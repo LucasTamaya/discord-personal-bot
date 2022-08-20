@@ -1,17 +1,27 @@
 from vocal_assistant import talk, listen
 from discord import get_messages, send_message
 
+discord_channel_id = "996348658964500550"
+
 
 def start_bot():
-    message = listen()
-    if "récupère les messages" in message:
-        print("Bot: Message en cours de récupération...")
-        get_messages()
-    if "envoie un message" in message:
-        print("Bot: J'écoute pour envoyer un message")
-        talk("J'écoute pour envoyer un message")
-    
+    print("Bot: Vous pouvez commencer à parler")
+    talk("Vous pouvez commencer à parler")
+    while True:
+        content = listen()
+        talk(content)
+        if "récupère les messages" in content:
+            print("Bot: Message en cours de récupération...")
+            get_messages(discord_channel_id)
+        if "réponse au message" in content:
+            print("Bot: J'écoute pour envoyer un message")
+            message = content.replace("réponse au message", "")
+            print(message)
+            send_message(discord_channel_id, message)
+        if ("stopper le robot" in content):
+            print("Bot: En cours d'arrêt")
+            talk("Robot en cours d'arrêt")
+            return
 
 
-while True:
-    start_bot()
+start_bot()

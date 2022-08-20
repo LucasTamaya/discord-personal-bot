@@ -9,6 +9,8 @@ headers = {
     'authorization': AUTHORIZATION
 }
 
+print(headers)
+
 
 # envoit un message sur discord
 def send_message(channel_id, message):
@@ -34,8 +36,4 @@ def get_messages(channel_id):
     # lecture du dernier message
     talk(contents[0])
 
-    # enregistrement de ma réponse
-    message = listen()
-
-    # envoit du message
-    send_message(channel_id, message)
+# get_messages("996348658964500550")

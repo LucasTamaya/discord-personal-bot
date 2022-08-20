@@ -16,13 +16,15 @@ stream = cap.open(format=pyaudio.paInt16, channels=1,
 
 
 def talk(text):
-    print("Bot:", text)
-    assistant.say(text)
-    assistant.runAndWait()
+    if (text == ""):
+        pass
+    else:
+        print("Bot:", text)
+        assistant.say(text)
+        assistant.runAndWait()
 
 
 def listen():
-    print("Parlez")
     while True:
         data = stream.read(4000, exception_on_overflow=False)
         if len(data) == 0:
@@ -31,5 +33,8 @@ def listen():
         if rec.AcceptWaveform(data):
             result = rec.Result()
             result = json.loads(result)
+            # si je ne parle pas
+            if (result["text"] == ""):
+                pass
             print("Moi:", result['text'])
             return result['text']
