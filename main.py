@@ -1,7 +1,7 @@
 from vocal_assistant import talk, listen
 from discord import get_messages, send_message
 
-discord_channel_id = "996348658964500550"
+discord_channel_id = "DISCORD_PRIVATE_MSG_ID"
 
 
 def start_bot():
